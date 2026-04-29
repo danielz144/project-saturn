@@ -1,3 +1,5 @@
+package com.project_saturn;
+
 public class Person {
     private String firstName;
     private String lastName;

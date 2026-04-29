@@ -1,7 +1,10 @@
+package com.project_saturn;
+
+import com.project_saturn.Person;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Parser {
