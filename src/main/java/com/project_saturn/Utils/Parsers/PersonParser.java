@@ -7,10 +7,20 @@ import java.util.ArrayList;
 import com.project_saturn.Utils.Person;
 
 public class PersonParser extends ParentParser {
+    /**
+     * Note: Call toString() on the parser to get the ArrayList of Person objects in the file.
+     * 
+     * @param file
+     * @throws FileNotFoundException
+     */
     public PersonParser(File file) throws FileNotFoundException {
         super(file);
     }
 
+    /**
+     * Parses the file and returns an ArrayList of Person objects.
+     * @return ArrayList<Person>
+     */
     public ArrayList<Person> parse() {
         ArrayList<Person> people = new ArrayList<>();
         super.checkFile();

@@ -1,5 +1,4 @@
 package com.project_saturn.Utils;
-
 public class Person {
     private String firstName;
     private String lastName;
