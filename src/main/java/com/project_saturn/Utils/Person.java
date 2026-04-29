@@ -1,3 +1,5 @@
+package com.project_saturn.Utils;
+
 public class Person {
     private String firstName;
     private String lastName;
@@ -17,5 +19,10 @@ public class Person {
 
     public String getFullName() {
         return firstName + " " + lastName;
+    }
+
+    @Override
+    public String toString() {
+        return getFullName();
     }
 }
