@@ -3,19 +3,19 @@ package com.project_saturn.Project_Tables;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
-import javax.sound.sampled.Line;
+import java.util.HashMap;
 
 import com.project_saturn.Project_Objects.Course;
 import com.project_saturn.Utils.Parsers.LineParser;
 
 public class CourseTable {
-    private static ArrayList<Course> courses = new ArrayList<>();
+    private static HashMap<Integer, Course> courses = new HashMap<>();
     private static File regentCoursesFile, nonRegentCoursesFile;
 
     private static boolean createAP(String courseName) {
         if (!courseName.contains("AP")) { return false; }
-        courses.add(new Course(courses.size() + 1, courseName, "AP"));
+        int courseId = courses.size() + 1;
+        courses.put(courseId, new Course(courseId, courseName, "AP"));
         return true;
     }
 
@@ -25,7 +25,8 @@ public class CourseTable {
 
         for (String courseName : lines) {
             if (createAP(courseName)){ continue; }
-            courses.add(new Course(courses.size() + 1, courseName, "Non-Regent"));
+            int courseId = courses.size() + 1;
+            courses.put(courseId, new Course(courseId, courseName, "Non-Regent"));
         }
     }
 
@@ -34,17 +35,19 @@ public class CourseTable {
         ArrayList<String> lines = parser.parse();
 
         for (String couseName : lines){
-            courses.add(new Course(courses.size() + 1, couseName, "Regent"));
+            int courseId = courses.size() + 1;
+            courses.put(courseId, new Course(courseId, couseName, "Regent"));
         }
     }
 
     public static void createTables() throws FileNotFoundException {
         regentCoursesFile = new File("src\\main\\java\\com\\project_saturn\\Infos\\Regents_Courses");
         nonRegentCoursesFile = new File("src\\main\\java\\com\\project_saturn\\Infos\\Non_Regents_Courses");
+        createNonRegents();
         createRegents();
     }
 
-    public static ArrayList<Course> getCourses() {
+    public static HashMap<Integer, Course> getCourses() {
         return courses;
     }
 }
