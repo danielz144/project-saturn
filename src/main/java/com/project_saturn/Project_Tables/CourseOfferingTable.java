@@ -28,21 +28,35 @@ class RegisterTracker {
 
 public class CourseOfferingTable {
     public static HashMap<Integer, Course_Offering> courseOfferings = new HashMap<>();
-    private static ArrayList<RegisterTracker> registerTracker = new ArrayList<>(); 
+    private static ArrayList<RegisterTracker> registerTracker = new ArrayList<>();
+    private static int totalOfferings;
     
     private static void initRegisterTracker() {
         for (Integer courseId : CourseTable.getCourses().keySet()) {
             registerTracker.add(new RegisterTracker(courseId));
         }
+
+        totalOfferings = registerTracker.size() * 5; // Each course can have up to 5 offerings
     }
 
+    private static RegisterTracker getRandomTracker() {
+        int randomIndex = (int) (Math.random() * totalOfferings);
+        return registerTracker.get(randomIndex);
+    }
+
+    //NOTE: Update teacher_id, location, and period for random values
     public static void createCourseOfferings() {
-        int amountOfCourses = CourseTable.getCourses().size();
+        int amountOfCourses, amountOfOfferings;
         if (courseOfferings.size() > 0) { System.err.println("Course offerings already exist."); return; }
         initRegisterTracker();
+        amountOfCourses = CourseTable.getCourses().size();
+        amountOfOfferings = (int) (Math.random()*(4*amountOfCourses + 1)) + amountOfCourses;
 
-        int amountOfOfferings = (int) (Math.random()*(4*amountOfCourses + 1)) + amountOfCourses;
-
-        
+        for (int i = 1; i <= amountOfOfferings; i++){
+            RegisterTracker tracker = getRandomTracker();
+            courseOfferings.put(i, new Course_Offering(i, 0, tracker.getCourseId(), "", 0));
+            tracker.registeredOffering();
+            totalOfferings--;
+        }
     }
 }
