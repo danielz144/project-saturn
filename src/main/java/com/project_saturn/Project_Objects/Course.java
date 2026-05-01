@@ -1,11 +1,11 @@
 package com.project_saturn.Project_Objects;
 
-public class Courses {
+public class Course {
     private int course_id;
     private String course_name;
     private String course_type;
 
-    public Courses(int course_id, String course_name, String course_type) {
+    public Course(int course_id, String course_name, String course_type) {
         this.course_id = course_id;
         this.course_name = course_name;
         this.course_type = course_type;

@@ -1,4 +1,4 @@
-package com.project_saturn;
+package com.project_saturn.Project_Objects;
 public class Student {
     private String firstName;
     private String lastName;
