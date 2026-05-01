@@ -1,3 +1,4 @@
+package com.project_saturn.Project_Objects;
 public class Roster {
     private int student_id; //References "Students" class student_id
     private int offering_id; //References "Course_Offerings" class offering_id
