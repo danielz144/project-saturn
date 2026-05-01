@@ -32,4 +32,10 @@ public class Course_Offering {
     public int getTeacher_id() {
         return teacher_id;
     }
+
+    @Override
+    public String toString() {
+        return "INSERT INTO Course_Offering (course_id, teacher_id, location) VALUES" + 
+        "(" + course_id + ",  " + teacher_id + ", " + location + ", " + period + ")";
+    }
 }
