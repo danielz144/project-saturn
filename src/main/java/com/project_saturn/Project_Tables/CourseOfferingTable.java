@@ -58,7 +58,7 @@ public class CourseOfferingTable {
 
     //NOTE: Update teacher_id, location, and period for random values
     //Runs 1 Time!
-    public static void createCourseOfferings() {
+    public static void createTable() {
         int amountOfCourses, amountOfOfferings;
         if (courseOfferings.size() > 0) { System.err.println("Course offerings already exist."); return; }
         initRegisterTracker();

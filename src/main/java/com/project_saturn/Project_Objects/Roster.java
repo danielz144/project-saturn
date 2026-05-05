@@ -8,6 +8,14 @@ public class Roster {
         this.offeringId = offering_id;
     }
 
+    public int getOfferingId() {
+        return offeringId;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
     // Returns the SQL statement to insert this roster entry into the database
     @Override
     public String toString() {

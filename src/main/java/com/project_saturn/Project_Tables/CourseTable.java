@@ -40,7 +40,7 @@ public class CourseTable {
         }
     }
 
-    public static void createTables() {
+    public static void createTable() {
         regentCoursesFile = Paths.get("src", "main", "java", "com", "project_saturn", "Infos", "Regents_Courses").toFile();
         nonRegentCoursesFile = Paths.get("src", "main", "java", "com", "project_saturn", "Infos", "Non_Regents_Courses").toFile();
         createNonRegents();

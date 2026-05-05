@@ -6,6 +6,15 @@ public class Teacher {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+    
     @Override
     public String toString() {
         return "INSERT INTO Teachers (first_name, last_name) VALUES (" + firstName + ", " + lastName + ")";

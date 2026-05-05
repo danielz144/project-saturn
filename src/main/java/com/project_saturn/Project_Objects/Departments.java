@@ -9,6 +9,14 @@ public class Departments {
         this.departmentId = department_id;
     }
 
+    public int getDepartmentId() {
+        return departmentId;
+    }
+
+    public String getName() {
+        return name;
+    }
+    
     @Override
     public String toString() {
         return "INSERT INTO Departments(name, department_id) VALUES " + "('" + name + "', " + departmentId + ")"; // returns insert statements
