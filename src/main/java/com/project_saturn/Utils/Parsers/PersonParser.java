@@ -1,7 +1,6 @@
 package com.project_saturn.Utils.Parsers;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import com.project_saturn.Utils.Person;
@@ -11,9 +10,8 @@ public class PersonParser extends ParentParser {
      * Note: Call toString() on the parser to get the ArrayList of Person objects in the file.
      * 
      * @param file
-     * @throws FileNotFoundException
      */
-    public PersonParser(File file) throws FileNotFoundException {
+    public PersonParser(File file) {
         super(file);
     }
 
