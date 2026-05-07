@@ -1,16 +1,16 @@
 package com.project_saturn.Project_Objects;
 
-public class Course_Offering {
+public class CourseOffering {
     private String location;
     private int offeringId; //PK
     private int teacherId, courseId, period;
 
-    public Course_Offering(int offering_id, int teacher_id, int course_id, String location, int period) {
-        this.teacherId = teacher_id;
-        this.courseId = course_id;
+    public CourseOffering(int offeringId, int teacherId, int courseId, String location, int period) {
+        this.teacherId = teacherId;
+        this.courseId = courseId;
         this.location = location;
         this.period = period;
-        this.offeringId = offering_id;
+        this.offeringId = offeringId;
     }
 
     public int getCourse_id() {

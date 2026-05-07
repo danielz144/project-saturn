@@ -7,5 +7,6 @@ import com.project_saturn.Project_Tables.TeacherTable;
 public class Test {
     public static void main(String[] args) {
         TeacherTable.createTable();
+        System.out.println(TeacherTable.assignRandomTeacher(0).toString());
     }
 }

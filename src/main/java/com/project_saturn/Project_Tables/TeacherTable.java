@@ -9,6 +9,7 @@ import com.project_saturn.Project_Objects.Teacher;
 import com.project_saturn.Utils.Parsers.LineParser;
 
 public class TeacherTable {
+    private static HashMap<Integer, ArrayList<Teacher>> assignedTeachers = new HashMap<>();
     private static HashMap<Integer, Teacher> teachers = new HashMap<>();
     private static File firstNameFile, lastNameFile;
 
@@ -20,7 +21,38 @@ public class TeacherTable {
 
         for (int i = 0; i < firstNameList.size(); i++){
             Teacher teacher = new Teacher(firstNameList.get(i), lastNameList.get(i));
-            teachers.put(teachers.size() + 1, teacher);
+            int teacherId = teachers.size() + 1;
+            teachers.put(teacherId, teacher);
+            teacher.setTeacherId(teacherId);
         }
+    }
+
+    public static Teacher assignRandomTeacher(int period) {
+        //Gets already assigned teachers
+        if (!assignedTeachers.containsKey(period)){ assignedTeachers.put(period, new ArrayList<>()); }
+        ArrayList<Teacher> periodAssignedTeachers = assignedTeachers.get(period);
+        ArrayList<Teacher> availableTeachers = new ArrayList<>();
+        Teacher assignedTeacher;
+        int randomIndex;
+
+        //Only adds available teachers to the list
+        for (Teacher teacher : teachers.values()) {
+            if (periodAssignedTeachers.contains(teacher)){ continue; }
+            availableTeachers.add(teacher);
+        }
+
+        randomIndex = (int) (Math.random() * availableTeachers.size());
+        assignedTeacher = availableTeachers.get(randomIndex);
+        periodAssignedTeachers.add(assignedTeacher);
+
+        return assignedTeacher;
+    }
+
+    public static String getInsertStatements() {
+        String result = "";
+        for (Teacher teacher : teachers.values()) {
+            result += teacher.toString() + "\n";
+        }
+        return result;
     }
 }
