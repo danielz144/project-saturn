@@ -15,9 +15,25 @@ public class Assignments {
         this.grade = grade;
     }
 
+    public int getStudent_id() {
+        return studentId;
+    }
+
+    public int getOffering_id() {
+        return offeringId;
+    }
+
+    public int getAssignmentName() {
+        return assignmentName;
+    }
+
+    public String getAssignmentType() {
+        return assignmentType;
+    }
+
     @Override
     public String toString() {
         return "INSERT INTO Assignments(student_id, offering_id, assignment_type, assignment_name, grade) VALUES "
-                + "(" + studentId + ", " + offeringId + ", '" + assignmentType + "', " + assignmentName + ", " + grade + ")"; // returns insert statements
+                + "(" + studentId + ", " + offeringId + ", '" + assignmentType + "', " + assignmentType + ", " + grade + ")"; // returns insert statements
     }
 }
