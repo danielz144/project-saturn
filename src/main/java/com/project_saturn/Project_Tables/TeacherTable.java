@@ -9,7 +9,7 @@ import com.project_saturn.Project_Objects.Teacher;
 import com.project_saturn.Utils.Parsers.LineParser;
 
 public class TeacherTable {
-    private static HashMap<Integer, ArrayList<Teacher>> assignedTeachers = new HashMap<>();
+    private static HashMap<Teacher, ArrayList<Integer>> teacherPeriods = new HashMap<>();
     private static HashMap<Integer, Teacher> teachers = new HashMap<>();
     private static File firstNameFile, lastNameFile;
 
@@ -22,29 +22,29 @@ public class TeacherTable {
         for (int i = 0; i < firstNameList.size(); i++){
             Teacher teacher = new Teacher(firstNameList.get(i), lastNameList.get(i));
             int teacherId = teachers.size() + 1;
+            teacherPeriods.put(teacher, new ArrayList<>());
             teachers.put(teacherId, teacher);
             teacher.setTeacherId(teacherId);
         }
     }
 
     public static Teacher assignRandomTeacher(int period) {
-        //Gets already assigned teachers
-        if (!assignedTeachers.containsKey(period)){ assignedTeachers.put(period, new ArrayList<>()); }
-        ArrayList<Teacher> periodAssignedTeachers = assignedTeachers.get(period);
-        ArrayList<Teacher> availableTeachers = new ArrayList<>();
+        ArrayList<Teacher> openTeachers = new ArrayList<>();
+        ArrayList<Integer> assignedTeacherPeriods;
         Teacher assignedTeacher;
         int randomIndex;
 
-        //Only adds available teachers to the list
-        for (Teacher teacher : teachers.values()) {
-            if (periodAssignedTeachers.contains(teacher)){ continue; }
-            availableTeachers.add(teacher);
+        for (Teacher teacher : teacherPeriods.keySet()) {
+            ArrayList<Integer> teachingPeriods = teacherPeriods.get(teacher);
+            if (teachingPeriods.contains(period)) { continue; }
+            openTeachers.add(teacher);
         }
-
-        randomIndex = (int) (Math.random() * availableTeachers.size());
-        assignedTeacher = availableTeachers.get(randomIndex);
-        periodAssignedTeachers.add(assignedTeacher);
-
+        //System.out.println(openTeachers.size());
+        randomIndex = (int) (Math.random() * openTeachers.size());
+        assignedTeacher = openTeachers.get(randomIndex);
+        assignedTeacherPeriods = teacherPeriods.get(assignedTeacher);
+        assignedTeacherPeriods.add(period);
+        
         return assignedTeacher;
     }
 

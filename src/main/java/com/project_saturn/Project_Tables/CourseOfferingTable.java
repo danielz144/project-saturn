@@ -1,10 +1,13 @@
 package com.project_saturn.Project_Tables;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.project_saturn.Project_Objects.CourseOffering;
 import com.project_saturn.Project_Objects.Teacher;
+import com.project_saturn.Utils.Parsers.LineParser;
 
 class RegisterTracker {
     private int openSlots = 5; // Max is 5
@@ -62,6 +65,7 @@ class PeriodTracker {
 public class CourseOfferingTable {
     private static HashMap<Integer, CourseOffering> courseOfferings = new HashMap<>();
     private static ArrayList<RegisterTracker> registerTracker = new ArrayList<>();
+    private static ArrayList<String> openLocations = new ArrayList<>();
     private static int totalOfferings;
 
     public static HashMap<Integer, CourseOffering> getCourseOfferings() {
@@ -89,6 +93,21 @@ public class CourseOfferingTable {
         return null;
     }
 
+    private static void fillOpenLocations() {
+        File roomsFile = Paths.get("src", "main", "java", "com", "project_saturn", "Infos", "Mock_Rooms").toFile();
+        LineParser roomLineParser = new LineParser(roomsFile);
+        ArrayList<String> rooms = roomLineParser.parse();
+
+        for (String room : rooms) {
+            openLocations.add(room);
+        }
+    }
+
+    private static String assignRandomLocation() {
+        int randomIndex = (int) (Math.random() * openLocations.size());
+        return openLocations.remove(randomIndex);
+    }
+
     //NOTE: Update teacher_id, location, and period for random values
     //Runs 1 Time!
     public static void createTable() {
@@ -96,16 +115,18 @@ public class CourseOfferingTable {
         if (courseOfferings.size() > 0) { System.err.println("Course offerings already exist."); return; }
         initRegisterTracker();
         PeriodTracker.init();
+        fillOpenLocations();
+
         amountOfCourses = CourseTable.getCourses().size();
         amountOfOfferings = (int) (Math.random()*(4*amountOfCourses + 1)) + amountOfCourses; //Gets a random number of offerings between the amount of courses and 5 times the amount of courses
-
+        
         for (int i = 1; i <= amountOfOfferings; i++){
             RegisterTracker tracker = getRandomTracker();
             Teacher assignedTeacher;
             int period = PeriodTracker.assignRandomPeriod();
 
             assignedTeacher = TeacherTable.assignRandomTeacher(period);
-            courseOfferings.put(i, new CourseOffering(i, assignedTeacher.getTeacherId(), tracker.getCourseId(), "", period));
+            courseOfferings.put(i, new CourseOffering(i, assignedTeacher.getTeacherId(), tracker.getCourseId(), assignRandomLocation(), period));
 
             //Removes open slots to ensure 
             tracker.registeredOffering();

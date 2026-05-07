@@ -6,7 +6,10 @@ import com.project_saturn.Project_Tables.TeacherTable;
 
 public class Test {
     public static void main(String[] args) {
+        CourseTable.createTable();
         TeacherTable.createTable();
-        System.out.println(TeacherTable.assignRandomTeacher(0).toString());
+        CourseOfferingTable.createTable();
+
+        //System.out.println(CourseOfferingTable.getInsertStatements());
     }
 }
