@@ -15,11 +15,11 @@ public class Assignments {
         this.grade = grade;
     }
 
-    public int getStudent_id() {
+    public int getStudentId() {
         return studentId;
     }
 
-    public int getOffering_id() {
+    public int getOfferingId() {
         return offeringId;
     }
 

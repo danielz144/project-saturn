@@ -4,9 +4,9 @@ public class Departments {
     private String name;
     private int departmentId;
 
-    public Departments(String name, int department_id) {
+    public Departments(String name, int departmentId) {
         this.name = name;
-        this.departmentId = department_id;
+        this.departmentId = departmentId;
     }
 
     public int getDepartmentId() {

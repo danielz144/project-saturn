@@ -11,16 +11,16 @@ public class Course {
         this.courseType = courseType;
     }
 
-    public int getCourse_id() {
-        return course_id;
+    public int getCourseId() {
+        return courseId;
     }
 
-    public String getCourse_name() {
-        return course_name;
+    public String getCourseName() {
+        return courseName;
     }
 
-    public String getCourse_type() {
-        return course_type;
+    public String getCourseType() {
+        return courseType;
     }
 
     @Override

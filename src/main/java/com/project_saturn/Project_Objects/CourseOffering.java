@@ -13,11 +13,11 @@ public class CourseOffering {
         this.offeringId = offeringId;
     }
 
-    public int getCourse_id() {
+    public int getCourseId() {
         return courseId;
     }
 
-    public int getOffering_id() {
+    public int getOfferingId() {
         return offeringId;
     }
 
@@ -29,7 +29,7 @@ public class CourseOffering {
         return period;
     }
 
-    public int getTeacher_id() {
+    public int getTeacherId() {
         return teacherId;
     }
 
