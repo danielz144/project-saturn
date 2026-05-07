@@ -15,6 +15,25 @@ public class Assignments {
         this.grade = grade;
     }
 
+<<<<<<< HEAD
+=======
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public int getOfferingId() {
+        return offeringId;
+    }
+
+    public int getAssignmentName() {
+        return assignmentName;
+    }
+
+    public String getAssignmentType() {
+        return assignmentType;
+    }
+
+>>>>>>> 80d882b (Merged From Tyson, fixed some naming conventions)
     @Override
     public String toString() {
         return "INSERT INTO Assignments(student_id, offering_id, assignment_type, assignment_name, grade) VALUES "

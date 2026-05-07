@@ -22,8 +22,11 @@ public class Course {
 
     public String getCourseType() {
         return courseType;
+<<<<<<< HEAD
 =======
 >>>>>>> 0633e4d (Created the Assignments Creator Class)
+=======
+>>>>>>> 80d882b (Merged From Tyson, fixed some naming conventions)
     }
 
     @Override
