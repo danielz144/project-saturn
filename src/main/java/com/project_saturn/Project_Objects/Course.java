@@ -1,18 +1,30 @@
 package com.project_saturn.Project_Objects;
 
 public class Course {
-    private int course_id;
-    private String course_name;
-    private String course_type;
+    private int courseId;
+    private String courseName;
+    private String courseType;
 
-    public Course(int course_id, String course_name, String course_type) {
-        this.course_id = course_id;
-        this.course_name = course_name;
-        this.course_type = course_type;
+    public Course(int courseId, String courseName, String courseType) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.courseType = courseType;
+    }
+
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public String getCourseType() {
+        return courseType;
     }
 
     @Override
     public String toString() {
-        return "INSERT INTO Courses(course_id, course_name, course_type) VALUES " + "(" + course_id + ", '" + course_name + "', '" + course_type + "')"; // returns insert statements
+        return "INSERT INTO Courses(course_id, course_name, course_type) VALUES " + "(" + courseId + ", '" + courseName + "', '" + courseType + "')"; // returns insert statements
     }
 }
