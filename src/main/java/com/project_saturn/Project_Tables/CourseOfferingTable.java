@@ -1,10 +1,13 @@
 package com.project_saturn.Project_Tables;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.project_saturn.Project_Objects.CourseOffering;
 import com.project_saturn.Project_Objects.Teacher;
+import com.project_saturn.Utils.Parsers.LineParser;
 
 class RegisterTracker {
     private int openSlots = 5; // Max is 5
@@ -45,6 +48,7 @@ class PeriodTracker {
             int count = periodCounts.get(period);
             if (count > lowestCount) { continue; }
             if (count < lowestCount) { lowestCountPeriods.clear(); }
+            lowestCount = count;
             lowestCountPeriods.add(period);
         }
         randomIndex = (int) (Math.random() * lowestCountPeriods.size()); //Randomizes the index of the lowest count periods
@@ -56,6 +60,44 @@ class PeriodTracker {
 
     public static HashMap<Integer, Integer> getPeriodCounts() {
         return periodCounts;
+    }
+}
+
+class LocationTracker {
+    private static HashMap<String, Integer> locationCounts = new HashMap<>();
+
+    public static void init() {
+        File locationFile = Paths.get("src", "main", "java", "com", "project_saturn", "Infos", "Mock_Rooms").toFile();
+        LineParser locationParser = new LineParser(locationFile);
+        ArrayList<String> locations = locationParser.parse();
+
+        for (String location : locations){
+            locationCounts.put(location, 0);
+        }
+    }
+
+    public static String assignRandomLocation() {
+        ArrayList<String> lowestCountLocations = new ArrayList<>();
+        int lowestCount = Integer.MAX_VALUE, randomIndex;
+        String assignedLocation;
+
+        // Find the lowest count of offerings for any period
+        for (String location : locationCounts.keySet()) {
+            int count = locationCounts.get(location);
+            if (count > lowestCount) { continue; }
+            if (count < lowestCount) { lowestCountLocations.clear(); }
+            lowestCount = count;
+            lowestCountLocations.add(location);
+        }
+        randomIndex = (int) (Math.random() * lowestCountLocations.size()); //Randomizes the index of the lowest count periods
+        assignedLocation = lowestCountLocations.get(randomIndex);
+        locationCounts.replace(assignedLocation, lowestCount + 1); // Increment the count for the assigned period
+
+        return assignedLocation;
+    }
+
+    public static HashMap<String, Integer> getLocationCounts() {
+        return locationCounts;
     }
 }
 
@@ -96,16 +138,19 @@ public class CourseOfferingTable {
         if (courseOfferings.size() > 0) { System.err.println("Course offerings already exist."); return; }
         initRegisterTracker();
         PeriodTracker.init();
+        LocationTracker.init();
+
         amountOfCourses = CourseTable.getCourses().size();
         amountOfOfferings = (int) (Math.random()*(4*amountOfCourses + 1)) + amountOfCourses; //Gets a random number of offerings between the amount of courses and 5 times the amount of courses
 
         for (int i = 1; i <= amountOfOfferings; i++){
+            String location = LocationTracker.assignRandomLocation();
+            int period = PeriodTracker.assignRandomPeriod();
             RegisterTracker tracker = getRandomTracker();
             Teacher assignedTeacher;
-            int period = PeriodTracker.assignRandomPeriod();
 
             assignedTeacher = TeacherTable.assignRandomTeacher(period);
-            courseOfferings.put(i, new CourseOffering(i, assignedTeacher.getTeacherId(), tracker.getCourseId(), "", period));
+            courseOfferings.put(i, new CourseOffering(i, assignedTeacher.getTeacherId(), tracker.getCourseId(), location, period));
 
             //Removes open slots to ensure 
             tracker.registeredOffering();
