@@ -1,5 +1,4 @@
 package com.project_saturn.Project_Tables;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -137,24 +136,14 @@ public class CourseOfferingsTable {
 
         amountOfCourses = CoursesTable.getCourses().size();
         amountOfOfferings = (int) (Math.random()*(4*amountOfCourses + 1)) + amountOfCourses; //Gets a random number of offerings between the amount of courses and 5 times the amount of courses
-
+        
         for (int i = 1; i <= amountOfOfferings; i++){
             String location = LocationTracker.assignRandomLocation();
             int period = PeriodTracker.assignRandomPeriod();
             RegisterTracker tracker = getRandomTracker();
             Teacher assignedTeacher;
 
-<<<<<<< HEAD:src/main/java/com/project_saturn/Project_Tables/CourseOfferingTable.java
-            assignedTeacher = TeacherTable.assignRandomTeacher(period);
-<<<<<<< HEAD:src/main/java/com/project_saturn/Project_Tables/CourseOfferingTable.java
-=======
-<<<<<<< HEAD
-            courseOfferings.put(i, new CourseOffering(i, assignedTeacher.getTeacherId(), tracker.getCourseId(), assignRandomLocation(), period));
-=======
-=======
             assignedTeacher = TeachersTable.assignRandomTeacher(period);
->>>>>>> deccf88 (Completed Java Side For Project):src/main/java/com/project_saturn/Project_Tables/CourseOfferingsTable.java
->>>>>>> 4f29cc0 (Completed Java Side For Project):src/main/java/com/project_saturn/Project_Tables/CourseOfferingsTable.java
             courseOfferings.put(i, new CourseOffering(i, assignedTeacher.getTeacherId(), tracker.getCourseId(), location, period));
 
             //Removes open slots to ensure 
