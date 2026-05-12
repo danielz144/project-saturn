@@ -7,12 +7,17 @@ public class ParentParser {
     protected Scanner scanner;
     protected File file;
 
-    public ParentParser(File file) throws FileNotFoundException {
+    public ParentParser(File file) {
         this.file = file;
-        scanner = new Scanner(file);
+        try {
+            scanner = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     protected void checkFile() {
+        if (file != null) { return; }
         System.err.println("File not found: " + file.getPath());
     }
 }
