@@ -1,10 +1,13 @@
 package com.project_saturn.Project_Tables;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.project_saturn.Project_Objects.CourseOffering;
 import com.project_saturn.Project_Objects.Teacher;
+import com.project_saturn.Utils.Parsers.LineParser;
 
 class RegisterTracker {
     private int openSlots = 5; // Max is 5
