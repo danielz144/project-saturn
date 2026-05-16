@@ -33,19 +33,6 @@ public class Assignment {
 
     @Override
     public String toString() {
-        return "INSERT INTO Assignments(student_id, offering_id, assignment_type, assignment_name, grade) VALUES "
-<<<<<<< HEAD:src/main/java/com/project_saturn/Project_Objects/Assignments.java
-                + "(" + studentId + ", " + offeringId + ", '" + assignmentType + "', " + assignmentType + ", " + grade + ")"; // returns insert statements
-=======
-<<<<<<< HEAD:src/main/java/com/project_saturn/Project_Objects/Assignments.java
-<<<<<<< HEAD
-                + "(" + studentId + ", " + offeringId + ", '" + assignmentType + "', " + assignmentType + ", " + grade + ")"; // returns insert statements
-=======
-                + "(" + studentId + ", " + offeringId + ", '" + assignmentType + "', " + assignmentName + ", " + grade + ")"; // returns insert statements
->>>>>>> 0633e4d (Created the Assignments Creator Class)
-=======
-                + "(" + studentId + ", " + offeringId + ", '" + assignmentType + "', " + assignmentName + ", " + grade + ");"; // returns insert statements
->>>>>>> deccf88 (Completed Java Side For Project):src/main/java/com/project_saturn/Project_Objects/Assignment.java
->>>>>>> 4f29cc0 (Completed Java Side For Project):src/main/java/com/project_saturn/Project_Objects/Assignment.java
+        return "INSERT INTO Assignments(student_id, offering_id, assignment_type, assignment_name, grade) VALUES " + "(" + studentId + ", " + offeringId + ", '" + assignmentType + "', " + assignmentType + ", " + grade + ")"; // returns insert statements
     }
 }

@@ -8,13 +8,6 @@ import java.util.HashMap;
 import com.project_saturn.Project_Objects.Teacher;
 import com.project_saturn.Utils.Parsers.LineParser;
 
-<<<<<<< HEAD:src/main/java/com/project_saturn/Project_Tables/TeacherTable.java
-public class TeacherTable {
-<<<<<<< HEAD:src/main/java/com/project_saturn/Project_Tables/TeacherTable.java
-    private static HashMap<Integer, ArrayList<Teacher>> assignedTeachers = new HashMap<>();
-=======
-    private static HashMap<Teacher, ArrayList<Integer>> teacherPeriods = new HashMap<>();
-=======
 class DepartmentTracker {
     private static HashMap<Integer, Integer> departmentCounts = new HashMap<>();
 
@@ -46,8 +39,6 @@ class DepartmentTracker {
 
 public class TeachersTable {
     private static HashMap<Integer, ArrayList<Teacher>> assignedTeachers = new HashMap<>();
->>>>>>> deccf88 (Completed Java Side For Project):src/main/java/com/project_saturn/Project_Tables/TeachersTable.java
->>>>>>> 4f29cc0 (Completed Java Side For Project):src/main/java/com/project_saturn/Project_Tables/TeachersTable.java
     private static HashMap<Integer, Teacher> teachers = new HashMap<>();
 
     public static void createTable() {

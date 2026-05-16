@@ -35,14 +35,6 @@ public class Teacher {
     
     @Override
     public String toString() {
-<<<<<<< HEAD
-        return "INSERT INTO Teachers (first_name, last_name) VALUES (" + firstName + ", " + lastName + ")";
-=======
-<<<<<<< HEAD
-        return "INSERT INTO Teachers (first_name, last_name) VALUES ('" + firstName + "', '" + lastName + "')";
-=======
         return "INSERT INTO Teachers (first_name, last_name) VALUES ('" + firstName.replaceAll("'", "''") + "', '" + lastName.replaceAll("'", "''") + "');";
->>>>>>> deccf88 (Completed Java Side For Project)
->>>>>>> 4f29cc0 (Completed Java Side For Project)
     }
 }
