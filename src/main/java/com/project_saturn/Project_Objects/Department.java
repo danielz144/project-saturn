@@ -1,10 +1,10 @@
 package com.project_saturn.Project_Objects;
 
-public class Departments {
+public class Department {
     private String name;
     private int departmentId;
 
-    public Departments(String name, int departmentId) {
+    public Department(String name, int departmentId) {
         this.name = name;
         this.departmentId = departmentId;
     }
@@ -19,7 +19,7 @@ public class Departments {
     
     @Override
     public String toString() {
-        return "INSERT INTO Departments(name, department_id) VALUES " + "('" + name + "', " + departmentId + ")"; // returns insert statements
+        return "INSERT INTO Departments(name) VALUES " + "('" + name + "');"; // returns insert statements
     }
 
 

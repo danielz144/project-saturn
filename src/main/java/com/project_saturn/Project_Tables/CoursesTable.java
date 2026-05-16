@@ -8,7 +8,7 @@ import java.util.HashMap;
 import com.project_saturn.Project_Objects.Course;
 import com.project_saturn.Utils.Parsers.LineParser;
 
-public class CourseTable {
+public class CoursesTable {
     private static HashMap<Integer, Course> courses = new HashMap<>();
     private static File regentCoursesFile, nonRegentCoursesFile;
 

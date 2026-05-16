@@ -35,7 +35,7 @@ public class CourseOffering {
 
     @Override
     public String toString() {
-        return "INSERT INTO Course_Offering (course_id, teacher_id, location) VALUES" + 
-        "(" + courseId + ",  " + teacherId + ", " + location + ", " + period + ")";
+        return "INSERT INTO Course_Offering (course_id, teacher_id, location, period) VALUES" + 
+        "(" + courseId + ",  " + teacherId + ", '" + location + "', " + period + ");";
     }
 }

@@ -1,13 +1,10 @@
 package com.project_saturn.Project_Tables;
 
-import java.io.File;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.project_saturn.Project_Objects.CourseOffering;
 import com.project_saturn.Project_Objects.Teacher;
-import com.project_saturn.Utils.Parsers.LineParser;
 
 class RegisterTracker {
     private int openSlots = 5; // Max is 5
@@ -67,11 +64,7 @@ class LocationTracker {
     private static HashMap<String, Integer> locationCounts = new HashMap<>();
 
     public static void init() {
-        File locationFile = Paths.get("src", "main", "java", "com", "project_saturn", "Infos", "Mock_Rooms").toFile();
-        LineParser locationParser = new LineParser(locationFile);
-        ArrayList<String> locations = locationParser.parse();
-
-        for (String location : locations){
+        for (String location : RoomsTable.getLocations()){
             locationCounts.put(location, 0);
         }
     }
@@ -101,7 +94,7 @@ class LocationTracker {
     }
 }
 
-public class CourseOfferingTable {
+public class CourseOfferingsTable {
     private static HashMap<Integer, CourseOffering> courseOfferings = new HashMap<>();
     private static ArrayList<RegisterTracker> registerTracker = new ArrayList<>();
     private static int totalOfferings;
@@ -111,7 +104,7 @@ public class CourseOfferingTable {
     }
     
     private static void initRegisterTracker() {
-        for (Integer courseId : CourseTable.getCourses().keySet()) {
+        for (Integer courseId : CoursesTable.getCourses().keySet()) {
             registerTracker.add(new RegisterTracker(courseId));
         }
 
@@ -135,12 +128,14 @@ public class CourseOfferingTable {
     //Runs 1 Time!
     public static void createTable() {
         int amountOfCourses, amountOfOfferings;
+        if (RoomsTable.getLocations().size() == 0){ System.err.println("Initialize Room Table First!"); return; }
         if (courseOfferings.size() > 0) { System.err.println("Course offerings already exist."); return; }
+        
         initRegisterTracker();
         PeriodTracker.init();
         LocationTracker.init();
 
-        amountOfCourses = CourseTable.getCourses().size();
+        amountOfCourses = CoursesTable.getCourses().size();
         amountOfOfferings = (int) (Math.random()*(4*amountOfCourses + 1)) + amountOfCourses; //Gets a random number of offerings between the amount of courses and 5 times the amount of courses
 
         for (int i = 1; i <= amountOfOfferings; i++){
@@ -149,7 +144,17 @@ public class CourseOfferingTable {
             RegisterTracker tracker = getRandomTracker();
             Teacher assignedTeacher;
 
+<<<<<<< HEAD:src/main/java/com/project_saturn/Project_Tables/CourseOfferingTable.java
             assignedTeacher = TeacherTable.assignRandomTeacher(period);
+<<<<<<< HEAD:src/main/java/com/project_saturn/Project_Tables/CourseOfferingTable.java
+=======
+<<<<<<< HEAD
+            courseOfferings.put(i, new CourseOffering(i, assignedTeacher.getTeacherId(), tracker.getCourseId(), assignRandomLocation(), period));
+=======
+=======
+            assignedTeacher = TeachersTable.assignRandomTeacher(period);
+>>>>>>> deccf88 (Completed Java Side For Project):src/main/java/com/project_saturn/Project_Tables/CourseOfferingsTable.java
+>>>>>>> 4f29cc0 (Completed Java Side For Project):src/main/java/com/project_saturn/Project_Tables/CourseOfferingsTable.java
             courseOfferings.put(i, new CourseOffering(i, assignedTeacher.getTeacherId(), tracker.getCourseId(), location, period));
 
             //Removes open slots to ensure 
