@@ -1,14 +1,14 @@
 package com.project_saturn.Project_Objects;
 
 public class CourseOffering {
-    private String location;
+    private int locationId;
     private int offeringId; //PK
     private int teacherId, courseId, period;
 
-    public CourseOffering(int offeringId, int teacherId, int courseId, String location, int period) {
+    public CourseOffering(int offeringId, int teacherId, int courseId, int locationId, int period) {
         this.teacherId = teacherId;
         this.courseId = courseId;
-        this.location = location;
+        this.locationId = locationId;
         this.period = period;
         this.offeringId = offeringId;
     }
@@ -21,8 +21,8 @@ public class CourseOffering {
         return offeringId;
     }
 
-    public String getLocation() {
-        return location;
+    public int getLocationId() {
+        return locationId;
     } 
 
     public int getPeriod() {
@@ -36,6 +36,6 @@ public class CourseOffering {
     @Override
     public String toString() {
         return "INSERT INTO Course_Offering (course_id, teacher_id, location, period) VALUES" + 
-        "(" + courseId + ",  " + teacherId + ", '" + location + "', " + period + ");";
+        "(" + courseId + ",  " + teacherId + ", '" + locationId+1 + "', " + period + ");";
     }
 }

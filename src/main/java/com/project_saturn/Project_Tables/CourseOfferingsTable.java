@@ -68,7 +68,7 @@ class LocationTracker {
         }
     }
 
-    public static String assignRandomLocation() {
+    public static int assignRandomLocationId() {
         ArrayList<String> lowestCountLocations = new ArrayList<>();
         int lowestCount = Integer.MAX_VALUE, randomIndex;
         String assignedLocation;
@@ -85,7 +85,7 @@ class LocationTracker {
         assignedLocation = lowestCountLocations.get(randomIndex);
         locationCounts.replace(assignedLocation, lowestCount + 1); // Increment the count for the assigned period
 
-        return assignedLocation;
+        return randomIndex;
     }
 
     public static HashMap<String, Integer> getLocationCounts() {
@@ -138,13 +138,13 @@ public class CourseOfferingsTable {
         amountOfOfferings = (int) (Math.random()*(4*amountOfCourses + 1)) + amountOfCourses; //Gets a random number of offerings between the amount of courses and 5 times the amount of courses
         
         for (int i = 1; i <= amountOfOfferings; i++){
-            String location = LocationTracker.assignRandomLocation();
+            int locationId = LocationTracker.assignRandomLocationId();
             int period = PeriodTracker.assignRandomPeriod();
             RegisterTracker tracker = getRandomTracker();
             Teacher assignedTeacher;
 
             assignedTeacher = TeachersTable.assignRandomTeacher(period);
-            courseOfferings.put(i, new CourseOffering(i, assignedTeacher.getTeacherId(), tracker.getCourseId(), location, period));
+            courseOfferings.put(i, new CourseOffering(i, assignedTeacher.getTeacherId(), tracker.getCourseId(), locationId, period));
 
             //Removes open slots to ensure 
             tracker.registeredOffering();
