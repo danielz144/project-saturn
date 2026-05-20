@@ -26,7 +26,7 @@ public class RoomsTable {
      public static String getInsertStatements() {
           String result = "";
           for (String location : locations) {
-               result += "INSERT INTO Rooms (location) VALUES ('" + location + "')\n";
+               result += "INSERT INTO Rooms (location) VALUES ('" + location + "');\n";
           }
           return result;
      }
