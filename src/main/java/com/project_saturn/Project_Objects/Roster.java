@@ -45,7 +45,8 @@ public class Roster {
           for (int studentId : Student.getStudents().keySet()) {
                ArrayList<Integer> studentOfferings = new ArrayList<>();
                for (int i = 1; i <= 10; i++){
-                    studentOfferings.add(CourseOfferingTracker.assignRandomOffering(i).getOfferingId());
+                    int offeringId = CourseOfferingTracker.assignRandomOffering(i).getOfferingId();
+                    studentOfferings.add(offeringId);
                }
                roster.put(studentId, studentOfferings);
           }

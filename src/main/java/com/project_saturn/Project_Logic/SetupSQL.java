@@ -25,8 +25,8 @@ public class SetupSQL {
         Teacher.populateTable();
         Course.populateTable();
         CourseOffering.populateTable();
-        Assignment.populateTable();
         Roster.populateTable();
+        Assignment.populateTable();
 
         fileWriter.write(Student.getInsertStatements());
         fileWriter.write("system echo 'Finished Inserting Student Tables Values!';\n");
@@ -52,13 +52,13 @@ public class SetupSQL {
         fileWriter.write("system echo 'Finished Inserting Course Offering Tables Values!';\n");
         System.out.println("Registered Course Offering Table Values!");
 
-        fileWriter.write(Assignment.getInsertStatements());
-        fileWriter.write("system echo 'Finished Inserting Assignment Tables Values!';\n");
-        System.out.println("Registered Assignment Table Values!");
-
         fileWriter.write(Roster.getInsertStatements());
         fileWriter.write("system echo 'Finished Inserting Roster Tables Values!';\n");
         System.out.println("Registered Roster Table Values!");
+
+        fileWriter.write(Assignment.getInsertStatements());
+        fileWriter.write("system echo 'Finished Inserting Assignment Tables Values!';\n");
+        System.out.println("Registered Assignment Table Values!");
         System.out.println("Finished Registering All Table Values!");
 
         fileWriter.close();
