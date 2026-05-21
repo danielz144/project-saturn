@@ -1,4 +1,4 @@
-package com.project_saturn.Project_Tables;
+package com.project_saturn.Project_Objects;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 import com.project_saturn.Utils.Parsers.LineParser;
 
-public class RoomsTable {
+public class Rooms {
      private static ArrayList<String> locations = new ArrayList<>();
 
-     public static void createTable() {
+     public static void populateTable() {
           File locationFile = Paths.get("src", "main", "java", "com", "project_saturn", "Infos", "Mock_Rooms").toFile();
           LineParser locationParser = new LineParser(locationFile);
           ArrayList<String> locationsList = locationParser.parse();

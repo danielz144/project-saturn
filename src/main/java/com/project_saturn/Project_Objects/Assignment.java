@@ -1,6 +1,10 @@
 package com.project_saturn.Project_Objects;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Assignment {
+    private static ArrayList<Assignment> assignments = new ArrayList<>();
     private int studentId;
     private int offeringId;
     private String assignmentType;
@@ -34,5 +38,39 @@ public class Assignment {
     @Override
     public String toString() {
         return "INSERT INTO Assignments(student_id, offering_id, assignment_type, assignment_name, grade) VALUES " + "(" + studentId + ", " + offeringId + ", '" + assignmentType + "', " + assignmentType + ", " + grade + ")"; // returns insert statements
+    }
+
+    public static void populateTable() {
+        for (int offeringId : CourseOffering.getCourseOfferings().keySet()) {
+            HashMap<Integer, ArrayList<Integer>> roster = Roster.getRoster();
+
+            for (int studentId : roster.keySet()) {
+                ArrayList<Integer> studentOfferingIds = roster.get(studentId);
+                if (!studentOfferingIds.contains(offeringId)) { continue; }
+                assignStudentsAsisgnment(studentId, offeringId);
+            }
+        }
+    }
+
+    private static void assignStudentsAsisgnment(int studentId, int offeringId) {
+        for (int j = 1; j <= 15; j++) {
+            if (j <= 12) {
+                assignments.add(new Assignment(studentId, offeringId, "Minor", j, (int) (Math.random() * 26) + 75)); // Replace student id with one from CourseTable
+            } else {
+                assignments.add(new Assignment(studentId, offeringId, "Major", j, (int) (Math.random() * 26) + 75)); // Replace student id with one from CourseTable
+            }
+        }
+    }
+
+    public static ArrayList<Assignment> getAssignments() {
+        return assignments; // Returns the list of Assignments
+    }
+
+    public static String getInsertStatements() {
+        String result = "";
+        for (Assignment assignment : assignments) {
+            result += assignment.toString() + "\n";
+        }
+        return result;
     }
 }

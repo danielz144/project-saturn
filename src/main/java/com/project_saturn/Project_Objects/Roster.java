@@ -1,9 +1,7 @@
-package com.project_saturn.Project_Tables;
+package com.project_saturn.Project_Objects;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import com.project_saturn.Project_Objects.CourseOffering;
 
 class CourseOfferingTracker {
      private static HashMap<Integer, HashMap<CourseOffering, Integer>> periodCounts = new HashMap<>();
@@ -13,7 +11,7 @@ class CourseOfferingTracker {
                periodCounts.put(i, new HashMap<>());
           }
 
-          for (CourseOffering courseOffering : CourseOfferingsTable.getCourseOfferings().values()) {
+          for (CourseOffering courseOffering : CourseOffering.getCourseOfferings().values()) {
                HashMap<CourseOffering, Integer> periodOfferings = periodCounts.get(courseOffering.getPeriod());
                periodOfferings.put(courseOffering, 0);
           }
@@ -38,13 +36,13 @@ class CourseOfferingTracker {
      }
 }
 
-public class RosterTable {
+public class Roster {
      private static HashMap<Integer, ArrayList<Integer>> roster = new HashMap<>(); // (studentId -> [offeringIds])
 
-     public static void createTable() {
+     public static void populateTable() {
           CourseOfferingTracker.init();
 
-          for (int studentId : StudentsTable.getStudents().keySet()) {
+          for (int studentId : Student.getStudents().keySet()) {
                ArrayList<Integer> studentOfferings = new ArrayList<>();
                for (int i = 1; i <= 10; i++){
                     studentOfferings.add(CourseOfferingTracker.assignRandomOffering(i).getOfferingId());
@@ -67,3 +65,4 @@ public class RosterTable {
           return result;
      }
 }
+
