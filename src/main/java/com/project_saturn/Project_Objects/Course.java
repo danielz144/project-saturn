@@ -77,10 +77,10 @@ public class Course {
     }
 
    public static String getInsertStatements() {
-    String result = "";
+    StringBuilder result = new StringBuilder();
     for (Course course : courses.values()) {
-        result += course.toString() + "\n";
+        result.append(course.toString()).append("\n");
     }
-    return result;
+    return result.toString();
    }
 }

@@ -188,10 +188,10 @@ public class CourseOffering {
     }
 
     public static String getInsertStatements() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (CourseOffering offering : courseOfferings.values()) {
-            result += offering.toString() + "\n";
+            result.append(offering.toString()).append("\n");
         }
-        return result;
+        return result.toString();
     }
 }

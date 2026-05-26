@@ -46,10 +46,10 @@ public class Department {
      }
 
      public static String getInsertStatements() {
-          String result = "";
+          StringBuilder result = new StringBuilder();
           for (Department department : departments.values()) {
-               result += department.toString() + "\n";
+               result.append(department.toString()).append("\n");
           }
-          return result;
+          return result.toString();
      }
 }

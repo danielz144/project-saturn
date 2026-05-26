@@ -116,10 +116,10 @@ public class Teacher {
     }
 
     public static String getInsertStatements() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (Teacher teacher : teachers.values()) {
-            result += teacher.toString() + "\n";
+            result.append(teacher.toString()).append("\n");
         }
-        return result;
+        return result.toString();
     }
 }
