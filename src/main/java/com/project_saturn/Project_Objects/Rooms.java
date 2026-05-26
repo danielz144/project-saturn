@@ -24,10 +24,10 @@ public class Rooms {
      }
 
      public static String getInsertStatements() {
-          String result = "";
+          StringBuilder result = new StringBuilder();
           for (String location : locations) {
-               result += "INSERT INTO Rooms (location) VALUES ('" + location + "');\n";
+               result.append("INSERT INTO Rooms (location) VALUES ('").append(location).append("');\n");
           }
-          return result;
+          return result.toString();
      }
 }

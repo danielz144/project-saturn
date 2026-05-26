@@ -67,10 +67,10 @@ public class Assignment {
     }
 
     public static String getInsertStatements() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (Assignment assignment : assignments) {
-            result += assignment.toString() + "\n";
+            result.append(assignment.toString()).append("\n");
         }
-        return result;
+        return result.toString();
     }
 }

@@ -58,10 +58,10 @@ public class Student {
      }
 
      public static String getInsertStatements() {
-          String result = "";
+          StringBuilder result = new StringBuilder();
           for (Student student : students.values()) {
-               result += student.toString() + "\n";
+               result.append(student.toString()).append("\n");
           }
-          return result;
+          return result.toString();
      }
 }

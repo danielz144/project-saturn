@@ -57,13 +57,13 @@ public class Roster {
      }
 
      public static String getInsertStatements() {
-          String result = "";
+          StringBuilder result = new StringBuilder();
           for (int studentId : roster.keySet()) {
                for (int offeringId : roster.get(studentId)) {
-                    result += "INSERT INTO Roster(student_id, offering_id) VALUES (" + studentId + ", " + offeringId + ");\n";
+                    result.append("INSERT INTO Roster(student_id, offering_id) VALUES (").append(studentId).append(", ").append(offeringId).append(");\n");
                }
           }
-          return result;
+          return result.toString();
      }
 }
 
