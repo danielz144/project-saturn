@@ -15,9 +15,12 @@ import com.project_saturn.Project_Objects.Teacher;
 
 public class SetupSQL {
     public static void main(String[] args) throws IOException {
-        FileWriter fileWriter = new FileWriter("InsertStatements.sql", true);
-        PrintWriter printWriter = new PrintWriter("InsertStatements.sql");
+        FileWriter fileWriter = new FileWriter("Insert1.sql", true);
+        FileWriter fileWriter2 = new FileWriter("Insert2.sql", true);
+        PrintWriter printWriter = new PrintWriter("Insert1.sql");
+        PrintWriter printWriter2 = new PrintWriter("Insert2.sql");
         printWriter.close();
+        printWriter2.close();
 
         Student.populateTable();
         Department.populateTable();
@@ -56,11 +59,14 @@ public class SetupSQL {
         fileWriter.write("system echo 'Finished Inserting Roster Tables Values!';\n");
         System.out.println("Registered Roster Table Values!");
 
-        fileWriter.write(Assignment.getInsertStatements());
-        fileWriter.write("system echo 'Finished Inserting Assignment Tables Values!';\n");
+        fileWriter.write(Assignment.getInsert1());
+        fileWriter.write("system echo 'Finished Inserting First Assignment Tables Values!';\n");
+        fileWriter2.write(Assignment.getInsert2());
+        fileWriter2.write("system echo 'Finished Inserting Second Assignment Tables Values!';\n");
         System.out.println("Registered Assignment Table Values!");
         System.out.println("Finished Registering All Table Values!");
 
         fileWriter.close();
+        fileWriter2.close();
     }
 }
