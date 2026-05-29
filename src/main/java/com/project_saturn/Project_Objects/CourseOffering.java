@@ -82,7 +82,7 @@ class LocationTracker {
         assignedLocation = lowestCountLocations.get(randomIndex);
         locationCounts.replace(assignedLocation, lowestCount + 1); // Increment the count for the assigned period
 
-        return Rooms.getLocations().indexOf(assignedLocation) + 1;
+        return Rooms.getLocations().indexOf(assignedLocation);
     }
 
     public static HashMap<String, Integer> getLocationCounts() {

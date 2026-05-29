@@ -37,7 +37,7 @@ public class Assignment {
 
     @Override
     public String toString() {
-        return "INSERT INTO Assignments(student_id, offering_id, assignment_type, assignment_name, grade) VALUES " + "(" + studentId + ", " + offeringId + ", '" + assignmentType + "', " + assignmentType + ", " + grade + ")"; // returns insert statements
+        return "(" + studentId + ", " + offeringId + ", '" + assignmentType + "', " + assignmentName + ", " + grade + ")"; // returns insert statements
     }
 
     public static void populateTable() {
@@ -66,11 +66,27 @@ public class Assignment {
         return assignments; // Returns the list of Assignments
     }
 
-    public static String getInsertStatements() {
+    public static String getInsert1() {
         StringBuilder result = new StringBuilder();
-        for (Assignment assignment : assignments) {
-            result.append(assignment.toString()).append("\n");
+        result.append("INSERT INTO Assignments(student_id, offering_id, assignment_type, assignment_name, grade) VALUES");
+        for (int i = 0; i < assignments.size() / 2; i++) {
+            Assignment assignment = assignments.get(i);
+            result.append(assignment.toString()).append(",\n");
         }
+        result.delete(result.length() - 2, result.length()); // Remove the last comma and space
+        result.append(";\n");
+        return result.toString();
+    }
+
+    public static String getInsert2() {
+        StringBuilder result = new StringBuilder();
+        result.append("INSERT INTO Assignments(student_id, offering_id, assignment_type, assignment_name, grade) VALUES");
+        for (int i = assignments.size()/2; i >= 0; i--) {
+            Assignment assignment = assignments.get(i);
+            result.append(assignment.toString()).append(",\n");
+        }
+        result.delete(result.length() - 2, result.length()); // Remove the last comma and space
+        result.append(";\n");
         return result.toString();
     }
 }
