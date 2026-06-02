@@ -129,8 +129,7 @@ public class CourseOffering {
 
     @Override
     public String toString() {
-        return "INSERT INTO Course_Offerings (course_id, teacher_id, location_id, period) VALUES" + 
-        "(" + courseId + ",  " + teacherId + ", " + (locationId+1) + ", " + period + ");";
+        return "(" + courseId + ",  " + teacherId + ", " + (locationId+1) + ", " + period + ")";
     }
 
     public static HashMap<Integer, CourseOffering> getCourseOfferings() {
@@ -189,9 +188,12 @@ public class CourseOffering {
 
     public static String getInsertStatements() {
         StringBuilder result = new StringBuilder();
+        result.append("INSERT INTO Course_Offerings (course_id, teacher_id, location_id, period) VALUES");
         for (CourseOffering offering : courseOfferings.values()) {
-            result.append(offering.toString()).append("\n");
+            result.append(offering.toString()).append(",\n");
         }
+        result.delete(result.length() - 2, result.length()); // Remove the last comma and newline
+        result.append(";");
         return result.toString();
     }
 }

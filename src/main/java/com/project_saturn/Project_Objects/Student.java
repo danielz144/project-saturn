@@ -37,7 +37,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "INSERT INTO Students (first_name, last_name) VALUES ('" + firstName.replaceAll("'", "''") + "', '" + lastName.replaceAll("'", "''") + "');";
+        return " ('" + firstName.replaceAll("'", "''") + "', '" + lastName.replaceAll("'", "''") + "')";
     }
      
      public static void populateTable() {
@@ -59,9 +59,12 @@ public class Student {
 
      public static String getInsertStatements() {
           StringBuilder result = new StringBuilder();
+          result.append("INSERT INTO Students (first_name, last_name) VALUES");
           for (Student student : students.values()) {
-               result.append(student.toString()).append("\n");
+               result.append(student.toString()).append(",\n");
           }
+          result.delete(result.length() - 2, result.length()); // Remove the last comma and newline
+          result.append(";");
           return result.toString();
      }
 }

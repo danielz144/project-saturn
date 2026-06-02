@@ -75,7 +75,7 @@ public class Teacher {
     
     @Override
     public String toString() {
-        return "INSERT INTO Teachers (first_name, last_name) VALUES ('" + firstName.replaceAll("'", "''") + "', '" + lastName.replaceAll("'", "''") + "');";
+        return "('" + firstName.replaceAll("'", "''") + "', '" + lastName.replaceAll("'", "''") + "')";
     }
 
     public static void populateTable() {
@@ -117,9 +117,12 @@ public class Teacher {
 
     public static String getInsertStatements() {
         StringBuilder result = new StringBuilder();
+        result.append("INSERT INTO Teachers (first_name, last_name) VALUES");
         for (Teacher teacher : teachers.values()) {
-            result.append(teacher.toString()).append("\n");
+            result.append(teacher.toString()).append(",\n");
         }
+        result.delete(result.length() - 2, result.length()); // Remove the last comma and newline
+        result.append(";");
         return result.toString();
     }
 }

@@ -27,7 +27,7 @@ public class Department {
     
     @Override
     public String toString() {
-        return "INSERT INTO Departments(name) VALUES " + "('" + name + "');"; // returns insert statements
+        return "('" + name + "')"; // returns insert statements
     }
 
      public static void populateTable() {
@@ -47,9 +47,12 @@ public class Department {
 
      public static String getInsertStatements() {
           StringBuilder result = new StringBuilder();
+          result.append("INSERT INTO Departments (name) VALUES");
           for (Department department : departments.values()) {
-               result.append(department.toString()).append("\n");
+               result.append(department.toString()).append(",\n");
           }
+          result.delete(result.length() - 2, result.length()); // Remove the last comma and newline
+          result.append(";");
           return result.toString();
      }
 }

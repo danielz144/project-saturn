@@ -69,7 +69,7 @@ public class Assignment {
     public static String getInsert1() {
         StringBuilder result = new StringBuilder();
         result.append("INSERT INTO Assignments(student_id, offering_id, assignment_type, assignment_name, grade) VALUES");
-        for (int i = 0; i < assignments.size() / 2; i++) {
+        for (int i = 1; i < assignments.size() / 2; i++) {
             Assignment assignment = assignments.get(i);
             result.append(assignment.toString()).append(",\n");
         }

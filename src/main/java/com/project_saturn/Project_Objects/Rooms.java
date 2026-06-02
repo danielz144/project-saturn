@@ -25,9 +25,12 @@ public class Rooms {
 
      public static String getInsertStatements() {
           StringBuilder result = new StringBuilder();
+          result.append("INSERT INTO Rooms (location) VALUES");
           for (String location : locations) {
-               result.append("INSERT INTO Rooms (location) VALUES ('").append(location).append("');\n");
+               result.append("('").append(location).append("'),\n");
           }
+          result.delete(result.length() - 2, result.length()); // Remove the last comma and newline
+          result.append(";");
           return result.toString();
      }
 }

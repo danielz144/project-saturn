@@ -34,7 +34,7 @@ public class Course {
 
     @Override
     public String toString() {
-        return "INSERT INTO Courses (course_name, course_type) VALUES " + "('"+courseName + "', '" + courseType + "');"; // returns insert statements
+        return "('" + courseName + "', '" + courseType + "')"; // returns insert statements
     }
 
     private static boolean createAP(String courseName) {
@@ -78,9 +78,12 @@ public class Course {
 
    public static String getInsertStatements() {
     StringBuilder result = new StringBuilder();
+    result.append("INSERT INTO Courses (course_name, course_type) VALUES");
     for (Course course : courses.values()) {
-        result.append(course.toString()).append("\n");
+        result.append(course.toString()).append(",\n");
     }
+    result.delete(result.length() - 2, result.length()); // Remove the last comma and newline
+    result.append(";");
     return result.toString();
    }
 }

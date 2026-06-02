@@ -58,11 +58,17 @@ public class Roster {
 
      public static String getInsertStatements() {
           StringBuilder result = new StringBuilder();
+          result.append("INSERT INTO Roster(student_id, offering_id) VALUES");
           for (int studentId : roster.keySet()) {
                for (int offeringId : roster.get(studentId)) {
-                    result.append("INSERT INTO Roster(student_id, offering_id) VALUES (").append(studentId).append(", ").append(offeringId).append(");\n");
+                    result.append("(").append(studentId).append(", ").append(offeringId).append("),\n");
                }
           }
+          // Remove the trailing comma
+          if (result.length() > 0) {
+               result.setLength(result.length() - 2);
+          }
+          result.append(";");
           return result.toString();
      }
 }
