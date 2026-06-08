@@ -81,7 +81,7 @@ public class Assignment {
     public static String getInsert2() {
         StringBuilder result = new StringBuilder();
         result.append("INSERT INTO Assignments(student_id, offering_id, assignment_type, assignment_name, grade) VALUES");
-        for (int i = assignments.size()/2; i >= 0; i--) {
+        for (int i = assignments.size()/2; i < assignments.size(); i++) {
             Assignment assignment = assignments.get(i);
             result.append(assignment.toString()).append(",\n");
         }
